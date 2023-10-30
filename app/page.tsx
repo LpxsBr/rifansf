@@ -5,6 +5,7 @@ import { api } from './config/Api'
 import TicketCard from './compontes/ticketCard';
 import BuyModal from './compontes/buyModal';
 import About from './compontes/about';
+import Head from 'next/head';
 
 
 
@@ -113,6 +114,11 @@ export default function Home() {
 
   return (
     <main className="lg:flex-col h-full overflow-y-hidden">
+      <Head>
+        <meta name="adopt-website-id" content="dd2b0e29-db4a-44a3-8dd9-278bfa7759ff" />
+        <script src="//tag.goadopt.io/injector.js?website_code=dd2b0e29-db4a-44a3-8dd9-278bfa7759ff"
+          className="adopt-injector"/>
+      </Head>
 
       {
         modalOpen && buyId != 0 && <BuyModal ticket_id={buyId} action={sendBuy}
@@ -120,7 +126,7 @@ export default function Home() {
       }
       <div className="main flex lg:flex-row md:flex-col sm:flex-col">
         {
-          <About/>
+          <About />
         }
         <div className='flex max-h-screen w-9/12 md:w-full sm:w-full shadow-lg flex-wrap gap-5 justify-center space-y-4 p-10 overflow-y-scroll' color='white'>
           {
