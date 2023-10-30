@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { SetStateAction, useEffect, useState } from 'react'
 import { api } from './config/Api'
 import TicketCard from './compontes/ticketCard';
 import BuyModal from './compontes/buyModal';
@@ -22,7 +22,7 @@ export default function Home() {
   interface iTicketLimit {
     data: {
       tickets: [{
-        value: Number
+        value: any
       }
       ]
     }
@@ -34,6 +34,13 @@ export default function Home() {
     number: string
   }
 
+  interface IResponseApi{
+    data: {
+      message: String,
+      status: String
+    },
+    status: number
+  }
 
 
 
@@ -41,7 +48,7 @@ export default function Home() {
   const [tickets, setTickets] = useState<iTickets>()
   const [modalOpen, setModalOpen] = useState(false)
   const [buyId, setBuyId] = useState(0)
-  const [res, setRes] = useState(null)
+  const [res, setRes] = useState<IResponseApi>()
 
   useEffect(() => {
     api.get('/api/ticket/u')
@@ -66,7 +73,8 @@ export default function Home() {
   for (let i = 1; i <= (ticketLimit?.data.tickets[0].value); i++) {
     mocked.push({
       ticket_id: i,
-      status: 'livre'
+      status: 'livre',
+      costumer: ''
     })
   }
 
@@ -83,19 +91,19 @@ export default function Home() {
     }
   })
 
-  const openBuyModal = (id) => {
+  const openBuyModal = (id: SetStateAction<number>): any => {
     setBuyId(id)
     setModalOpen(true)
   }
 
-  const closeBuyModal = () => {
+  const closeBuyModal = (): any => {
     setBuyId(0)
     setModalOpen(false)
     console.log('opa');
 
   }
 
-  const sendBuy = (props) => {
+  const sendBuy = (props: { id: any; costumer: any; number: any; }) => {
     console.log('qsaseawe');
     
     api.post(`/api/ticket/u/${props.id}/${props.costumer}/${props.number}`).then(resp=>setRes(resp))

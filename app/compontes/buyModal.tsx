@@ -3,8 +3,6 @@ import { api } from "../config/Api"
 
 interface ITicketProps {
     ticket_id: number,
-    status: String,
-    costumer: String,
     action: any,
     close: any
 }
