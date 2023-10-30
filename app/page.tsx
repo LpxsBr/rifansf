@@ -1,11 +1,9 @@
 'use client';
-import Image from 'next/image'
 import { SetStateAction, useEffect, useState } from 'react'
 import { api } from './config/Api'
 import TicketCard from './compontes/ticketCard';
 import BuyModal from './compontes/buyModal';
 import About from './compontes/about';
-import Head from 'next/head';
 
 
 
@@ -114,12 +112,6 @@ export default function Home() {
 
   return (
     <main className="lg:flex-col h-full overflow-y-hidden">
-      <Head>
-        <meta name="adopt-website-id" content="dd2b0e29-db4a-44a3-8dd9-278bfa7759ff" />
-        <script src="//tag.goadopt.io/injector.js?website_code=dd2b0e29-db4a-44a3-8dd9-278bfa7759ff"
-          className="adopt-injector"/>
-      </Head>
-
       {
         modalOpen && buyId != 0 && <BuyModal ticket_id={buyId} action={sendBuy}
           close={() => closeBuyModal()} />

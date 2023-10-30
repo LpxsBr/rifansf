@@ -16,6 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="adopt-website-id" content="dd2b0e29-db4a-44a3-8dd9-278bfa7759ff" />
+        <script src="//tag.goadopt.io/injector.js?website_code=dd2b0e29-db4a-44a3-8dd9-278bfa7759ff"
+          className="adopt-injector" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   )
