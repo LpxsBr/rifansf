@@ -4,6 +4,7 @@ import { SetStateAction, useEffect, useState } from 'react'
 import { api } from './config/Api'
 import TicketCard from './compontes/ticketCard';
 import BuyModal from './compontes/buyModal';
+import About from './compontes/about';
 
 
 
@@ -34,7 +35,7 @@ export default function Home() {
     number: string
   }
 
-  interface IResponseApi{
+  interface IResponseApi {
     data: {
       message: String,
       status: String
@@ -105,33 +106,37 @@ export default function Home() {
 
   const sendBuy = (props: { id: any; costumer: any; number: any; }) => {
     console.log('qsaseawe');
-    
-    api.post(`/api/ticket/u/${props.id}/${props.costumer}/${props.number}`).then(resp=>setRes(resp))
-    
+
+    api.post(`/api/ticket/u/${props.id}/${props.costumer}/${props.number}`).then(resp => setRes(resp))
+
   }
 
   return (
-    <main className="flex h-full flex-col items-center">
-      <header className='bg-blue-600 px-4 py-2 gap-y-4 w-full h-28 flex-col justify-center items-center text-neutral-100'>
+    <main className="lg:flex-col h-full overflow-y-hidden">
 
-      </header>
       {
-        modalOpen && buyId != 0 && <BuyModal ticket_id={buyId}  action={sendBuy}
-        close={()=>closeBuyModal()}/>
+        modalOpen && buyId != 0 && <BuyModal ticket_id={buyId} action={sendBuy}
+          close={() => closeBuyModal()} />
       }
-      <div className='flex min-h-screen flex-wrap gap-5 justify-center space-y-4 p-20 overflow-y-hidden overflow-y-scroll' color='white'>
+      <div className="main flex lg:flex-row md:flex-col sm:flex-col">
         {
-          mocked.map(
-            (d, key) =>
-              <TicketCard
-                key={key}
-                costumer={d.costumer}
-                ticket_id={d.ticket_id}
-                status={d.status}
-                action={() => openBuyModal(d.ticket_id)}
-              />
-          )
+          <About/>
         }
+        <div className='flex max-h-screen w-9/12 md:w-full sm:w-full shadow-lg flex-wrap gap-5 justify-center space-y-4 p-10 overflow-y-scroll' color='white'>
+          {
+            mocked.map(
+              (d, key) =>
+                <TicketCard
+                  key={key}
+                  costumer={d.costumer}
+                  ticket_id={d.ticket_id}
+                  status={d.status}
+                  action={() => openBuyModal(d.ticket_id)}
+                />
+            )
+          }
+        </div>
+
       </div>
     </main>
   )
