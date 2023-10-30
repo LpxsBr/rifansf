@@ -116,23 +116,26 @@ export default function Home() {
         modalOpen && buyId != 0 && <BuyModal ticket_id={buyId} action={sendBuy}
           close={() => closeBuyModal()} />
       }
-      <div className="main flex lg:flex-row md:flex-col sm:flex-col">
+      <div className="main flex flex-col md:flex-row justify-center align-center">
         {
           <About />
         }
-        <div className='flex max-h-screen w-9/12 md:w-full sm:w-full shadow-lg flex-wrap gap-5 justify-center space-y-4 p-10 overflow-y-scroll' color='white'>
-          {
-            mocked.map(
-              (d, key) =>
-                <TicketCard
-                  key={key}
-                  costumer={d.costumer}
-                  ticket_id={d.ticket_id}
-                  status={d.status}
-                  action={() => openBuyModal(d.ticket_id)}
-                />
-            )
-          }
+        <div className='flex max-h-screen md:w-9/12 w-full shadow-lg flex-col gap-5 text-center justify-center align-center space-y-4 p-10 overflow-y-scroll' color='white'>
+          <h2 className='text-xl font-extrabold'>Pontos da rifa</h2>
+          <div className='flex max-h-screen w-full shadow-lg flex-wrap gap-5 justify-center align-center space-y-4 p-10 overflow-y-scroll' color='white'>
+            {
+              mocked.map(
+                (d, key) =>
+                  <TicketCard
+                    key={key}
+                    costumer={d.costumer}
+                    ticket_id={d.ticket_id}
+                    status={d.status}
+                    action={() => openBuyModal(d.ticket_id)}
+                  />
+              )
+            }
+          </div>
         </div>
 
       </div>
