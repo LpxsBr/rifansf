@@ -57,8 +57,13 @@ export default function BuyModal({ ticket_id, close, action }: ITicketProps) {
                 }
                 {
                     step == 2 &&
-                    <div className="flex justify-center align-center">
-                        <img width={210} src="https://upload.wikimedia.org/wikipedia/commons/8/8a/QR_Code.png" alt="qr_code" />
+                    <div className="main flex flex-col md:flex-row justify-center align-center">
+                        <div>
+                            <img width={210} src="https://upload.wikimedia.org/wikipedia/commons/8/8a/QR_Code.png" alt="qr_code" />
+                        </div>
+                        <div className="main flex flex-col md:flex-row justify-center align-center">
+                            <p className="block text-white-700 text-sm font-bold md:text-base max-w-xs md:min-w-md"> Sua inscrição foi enviada e até 24 horas confirmaremos o pagamento :)</p>
+                        </div>
                     </div>
                 }
 
